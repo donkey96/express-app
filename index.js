@@ -8,25 +8,22 @@ app.use(express.static('public'));
 var bodyParser = require('body-parser'); // ★追加
 app.use(bodyParser.urlencoded({extended: false})); // ★追加
 
+var data = {
+  'Taro': 'taro@yamada',
+  'Hanako': 'hanako@flower',
+  'Sachiro': 'sachico@happy',
+  'Ichiro': 'ichiro@baseball',
+};
+
 // ※トップページ
 app.get('/', (req, res) => {
   var msg = 'This is Express Page!<br>'
-    + '※メッセージを書いて送信して下さい。';
+    + '※データを表示します。';
   res.render('index.ejs',
     {
       title: 'Index',
       content: msg,
-    });
-});
-
-// ※POST送信の処理
-app.post('/', (req, res) => {
-  var msg = 'This is Posted Page!<br>' +
-    'あなたは「<b>' + req.body.message +'</b>」と送信しました。';
-    res.render('index.ejs',
-    {
-      title: 'Posted',
-      content: msg,
+      data: data,
     });
 });
 

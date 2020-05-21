@@ -8,12 +8,20 @@ app.use(express.static('public'));
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: false}));
 
+var data = {
+  'Taro': 'taro@yamada',
+  'Hanako': 'hanako@flower',
+  'Sachiko': 'sachiko@happy',
+  'Ichiro': 'ichiro@baseball'
+}
+
 app.get('/', (req, res) => {
-  var msg = 'This is Index page!<br>' + '※メッセージを書いて送信して下さい。';
+  var msg = 'This is Index page!<br>' + '※データを表示します。';
   // index.ejsをレンダリングする
   res.render('index.ejs', {
     title: 'Index',
-    content: msg
+    content: msg,
+    data: data
   });
 });
 
